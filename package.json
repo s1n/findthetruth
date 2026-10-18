@@ -1,0 +1,26 @@
+{
+  "name": "findthetruth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1n/findthetruth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/s1n/findthetruth/issues"
+  },
+  "homepage": "https://github.com/s1n/findthetruth#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.7"
+  }
+}

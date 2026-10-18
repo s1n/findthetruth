@@ -1,0 +1,118 @@
+/* ===========================================================
+   Find The Truth — starter styles.
+   Placeholder only. The real 90s-cyberpunk theme comes later.
+   =========================================================== */
+
+:root {
+  --bg: #0b0d10;
+  --fg: #d7dde3;
+  --accent: #39ff14;
+  --muted: #7a8591;
+  --max-width: 52rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.5rem 0.75rem;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid #1c2129;
+}
+
+.site-brand {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.site-nav a {
+  color: var(--fg);
+  margin-left: 1rem;
+  text-decoration: none;
+}
+.site-nav a:hover { color: var(--accent); }
+
+.site-main { padding-block: 2.5rem; min-height: 60vh; }
+
+a { color: var(--accent); }
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+.btn:hover { background: var(--accent); color: var(--bg); }
+
+.lore-list { list-style: none; padding: 0; }
+.lore-list__item { padding-block: 0.4rem; border-bottom: 1px solid #1c2129; }
+.lore-list__pack { color: var(--muted); margin-left: 0.5rem; font-size: 0.85em; }
+
+.lore-entry__pack,
+.lore-entry__faction,
+.lore-entry__subject { color: var(--muted); margin: 0; }
+
+/* Tags / facet chips (placeholder styling; real theme comes later). */
+.tag {
+  display: inline-block;
+  margin: 0.15rem 0.3rem 0.15rem 0;
+  padding: 0.1rem 0.55rem;
+  border: 1px solid #1c2129;
+  border-radius: 999px;
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.85em;
+}
+.tag:hover { border-color: var(--accent); color: var(--accent); }
+.tag__count { color: var(--muted); font-size: 0.85em; }
+
+.lore-entry__meta {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #1c2129;
+}
+.lore-entry__source { color: var(--muted); margin: 0 0 0.5rem; }
+.lore-entry__topics { margin: 0; }
+
+.tag-cloud { line-height: 2.2; }
+.facet-page__count { color: var(--muted); }
+
+.site-footer {
+  padding-block: 2rem;
+  border-top: 1px solid #1c2129;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.fine-print { font-size: 0.8em; }

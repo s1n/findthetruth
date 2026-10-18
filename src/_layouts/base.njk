@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ description or site.description }}" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="site-brand" href="/">{{ site.title }}</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/lore/">Lore</a>
+      </nav>
+    </header>
+
+    <main id="main" class="site-main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <p>{{ site.subtitle }}</p>
+      <p class="fine-print">
+        Fan archive. Android: Netrunner and its text are the property of their
+        respective rights holders.
+      </p>
+    </footer>
+  </body>
+</html>

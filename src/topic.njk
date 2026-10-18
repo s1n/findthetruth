@@ -1,0 +1,23 @@
+---
+layout: base.njk
+pagination:
+  data: collections.topics
+  size: 1
+  alias: topic
+permalink: "/lore/topic/{{ topic.slug }}/"
+eleventyComputed:
+  title: "Topic: {{ topic.name }}"
+---
+<section class="facet-page">
+  <h1>Topic: {{ topic.name }}</h1>
+  <p class="facet-page__count">{{ topic.pages | length }} entr{% if topic.pages | length == 1 %}y{% else %}ies{% endif %}</p>
+  <ul class="lore-list">
+    {% for entry in topic.pages %}
+      <li class="lore-list__item">
+        <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+        {% if entry.data.source %}<span class="lore-list__pack">{{ entry.data.source }}</span>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="lore-entry__back"><a href="/lore/">&larr; Back to all lore</a></p>
+</section>

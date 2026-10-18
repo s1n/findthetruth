@@ -1,0 +1,60 @@
+---
+layout: base.njk
+title: Lore Archive
+---
+<section class="lore-index">
+  <h1>Lore Archive</h1>
+
+  <h2>Factions</h2>
+  <ul class="lore-list">
+    {% for entry in collections.lore %}
+      {% if entry.data.category == "faction" %}
+        <li class="lore-list__item">
+          <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+          {% if entry.data.side %}<span class="lore-list__pack">{{ entry.data.side }}</span>{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  <h2>People</h2>
+  <ul class="lore-list">
+    {% for entry in collections.lore %}
+      {% if entry.data.category == "person" %}
+        <li class="lore-list__item">
+          <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+          {% if entry.data.faction %}<span class="lore-list__pack">{{ entry.data.faction }}</span>{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  <h2>Stories</h2>
+  <ul class="lore-list">
+    {% for entry in collections.lore %}
+      {% if entry.data.category == "story" %}
+        <li class="lore-list__item">
+          <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+          {% if entry.data.pack %}<span class="lore-list__pack">{{ entry.data.pack }}</span>{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  <h2>Browse by topic</h2>
+  <p class="tag-cloud">
+    {% for topic in collections.topics %}
+      <a class="tag" href="/lore/topic/{{ topic.slug }}/">{{ topic.name }} <span class="tag__count">{{ topic.pages | length }}</span></a>
+    {% endfor %}
+  </p>
+
+  <h2>Browse by source</h2>
+  <ul class="lore-list">
+    {% for source in collections.sources %}
+      <li class="lore-list__item">
+        <a href="/lore/source/{{ source.slug }}/">{{ source.name }}</a>
+        <span class="lore-list__pack">{{ source.pages | length }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

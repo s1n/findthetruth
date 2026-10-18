@@ -1,0 +1,25 @@
+---
+layout: base.njk
+---
+<article class="lore-entry">
+  <header class="lore-entry__header">
+    <h1>{{ title }}</h1>
+    {% if subject %}<p class="lore-entry__subject">{{ subject }}</p>{% endif %}
+    {% if faction %}<p class="lore-entry__faction">{{ faction }}{% if side %} &middot; {{ side }}{% endif %}</p>{% endif %}
+  </header>
+  <div class="lore-entry__body">
+    {{ content | safe }}
+  </div>
+  <footer class="lore-entry__meta">
+    {% if source %}
+      <p class="lore-entry__source">Source: <a href="/lore/source/{{ source | slug }}/">{{ source }}</a></p>
+    {% endif %}
+    {% if topics and topics.length %}
+      <p class="lore-entry__topics">
+        Topics:
+        {% for t in topics %}<a class="tag" href="/lore/topic/{{ t | slug }}/">{{ t }}</a>{% endfor %}
+      </p>
+    {% endif %}
+  </footer>
+  <p class="lore-entry__back"><a href="/lore/">&larr; Back to all lore</a></p>
+</article>
