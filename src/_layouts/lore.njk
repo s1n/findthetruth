@@ -6,20 +6,37 @@ layout: base.njk
     <h1>{{ title }}</h1>
     {% if subject %}<p class="lore-entry__subject">{{ subject }}</p>{% endif %}
     {% if faction %}<p class="lore-entry__faction">{{ faction }}{% if side %} &middot; {{ side }}{% endif %}</p>{% endif %}
+    {% if baudot %}
+      {% set text = baudot %}{% include "baudot.njk" %}
+    {% endif %}
   </header>
-  <div class="lore-entry__body">
-    {{ content | safe }}
+
+  <div class="lore-entry__layout">
+    <div class="lore-entry__body">
+      {{ content | safe }}
+      <p class="lore-entry__back"><a href="/lore/">&larr; Back to all lore</a></p>
+    </div>
+
+    <aside class="lore-entry__rail">
+      {% if source %}
+        <section class="panel panel--rail">
+          <h2 class="panel__title">Source</h2>
+          <p><a class="tag" href="/lore/source/{{ source | slug }}/">{{ source }}</a></p>
+        </section>
+      {% endif %}
+      {% if topics and topics.length %}
+        <section class="panel panel--rail">
+          <h2 class="panel__title">Topics</h2>
+          <p class="tag-cloud">
+            {% for t in topics %}<a class="tag" href="/lore/topic/{{ t | slug }}/">{{ t }}</a>{% endfor %}
+          </p>
+        </section>
+      {% endif %}
+      <section class="panel panel--rail panel--readout" aria-hidden="true">
+        <span class="panel__chatter">TRACE {{ title | sysid }}</span>
+        {% set seed = title %}{% set rows = 4 %}{% include "telemetry.njk" %}
+        {% set text = (source | adnid if source else title) %}{% include "barcode.njk" %}
+      </section>
+    </aside>
   </div>
-  <footer class="lore-entry__meta">
-    {% if source %}
-      <p class="lore-entry__source">Source: <a href="/lore/source/{{ source | slug }}/">{{ source }}</a></p>
-    {% endif %}
-    {% if topics and topics.length %}
-      <p class="lore-entry__topics">
-        Topics:
-        {% for t in topics %}<a class="tag" href="/lore/topic/{{ t | slug }}/">{{ t }}</a>{% endfor %}
-      </p>
-    {% endif %}
-  </footer>
-  <p class="lore-entry__back"><a href="/lore/">&larr; Back to all lore</a></p>
 </article>

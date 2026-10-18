@@ -1,0 +1,7 @@
+{#- Code 39 barcode. Set `text` — it actually encodes to that string.
+    Decorative but decodable. -#}
+<span class="barcode" aria-hidden="true" title="{{ text }} (Code 39)">
+  {%- for el in (text | barcode) -%}
+    <span class="barcode__el{% if el.bar %} is-bar{% endif %}" style="width:{{ el.w }}px"></span>
+  {%- endfor -%}
+</span>

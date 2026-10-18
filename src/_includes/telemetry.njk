@@ -1,0 +1,6 @@
+{#- Numeric telemetry readout. Set `seed` (and optional `rows`). Decorative. -#}
+<div class="telemetry" aria-hidden="true">
+  {%- for row in (seed | telemetry(rows or 3)) -%}
+    <span class="telemetry__row">{{ row }}</span>
+  {%- endfor -%}
+</div>

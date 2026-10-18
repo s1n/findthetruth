@@ -1,32 +1,60 @@
 <!doctype html>
-<html lang="{{ site.lang }}">
+<html lang="{{ site.lang }}" data-theme="yellow">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{{ description or site.description }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Share+Tech+Mono&family=Silkscreen:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-      <a class="site-brand" href="/">{{ site.title }}</a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="/">Home</a>
-        <a href="/lore/">Lore</a>
-      </nav>
-    </header>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="barcode-edge" aria-hidden="true"></div>
 
-    <main id="main" class="site-main">
-      {{ content | safe }}
-    </main>
+    <div class="frame">
+      <header class="site-header">
+        <a class="site-brand" href="/">
+          <span class="site-brand__mark">//</span>{{ site.title }}
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="/">Home</a>
+          <a href="/lore/">Lore</a>
+        </nav>
+        <div class="site-header__hud">
+          <span class="site-header__sysline" aria-hidden="true">{{ site.ai.name }} · {{ site.ai.role }}</span>
+          <span class="site-header__session" aria-hidden="true">SID {{ (title or site.title) | codegroups(3, 4) }}</span>
+          {% set text = title or site.title %}{% include "barcode.njk" %}
+        </div>
+      </header>
 
-    <footer class="site-footer">
-      <p>{{ site.subtitle }}</p>
-      <p class="fine-print">
-        Fan archive. Android: Netrunner and its text are the property of their
-        respective rights holders.
-      </p>
-    </footer>
+      <main id="main" class="site-main">
+        {{ content | safe }}
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer__hud">
+          <div class="site-footer__ai">
+            <p class="site-footer__status" aria-hidden="true">// {{ site.ai.name }} — {{ site.ai.tagline }}</p>
+            {% set text = site.ai.tagline %}{% include "baudot.njk" %}
+          </div>
+          <div class="site-footer__chatter">
+            {% set seed = (title or site.title) + "fc" %}{% set lines = 3 %}{% include "noise-text.njk" %}
+          </div>
+        </div>
+        <p>{{ site.subtitle }}</p>
+        <p class="fine-print">
+          Fan archive. Android: Netrunner and its text are the property of their
+          respective rights holders. {{ site.ai.short }} is a fiction of this site,
+          not an official Android: Netrunner entity.
+        </p>
+      </footer>
+    </div>
   </body>
 </html>

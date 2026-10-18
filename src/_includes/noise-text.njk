@@ -1,0 +1,6 @@
+{#- Faux terminal chatter. Set `seed` (and optional `lines`). Decorative. -#}
+<div class="noise-text" aria-hidden="true">
+  {%- for line in (seed | noiselines(lines or 3)) -%}
+    <span class="noise-text__line">{{ line }}</span>
+  {%- endfor -%}
+</div>

@@ -1,0 +1,11 @@
+{#- Baudot dot-matrix strip. Usage: {% include "baudot.njk" %} with `text`
+    set, e.g. {% set text = "I AM BECOME DEATH" %}. Purely decorative. -#}
+<span class="baudot" aria-hidden="true" title="{{ text }} (Baudot)">
+  {%- for col in text | baudot -%}
+    <span class="baudot__col">
+      {%- for bit in col | string | list -%}
+        <span class="baudot__bit{% if bit == '1' %} is-on{% endif %}"></span>
+      {%- endfor -%}
+    </span>
+  {%- endfor -%}
+</span>
