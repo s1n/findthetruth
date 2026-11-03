@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: Factions
+---
+<section class="lore-index lore-directory">
+  <p class="crumb"><a href="/lore/">// Lore Archive</a> / Factions</p>
+  <h1>Factions</h1>
+
+  {% set factions = collections.lore | selectCategory("faction") %}
+
+  <section class="panel panel--wide">
+    <header class="panel__head">
+      <h2 class="panel__title">Corps &amp; runner creeds</h2>
+      <span class="panel__chatter" aria-hidden="true">SEC.{{ "Factions" | sysid }}</span>
+    </header>
+    <ul class="lore-list lore-list--cols">
+      {% for entry in factions %}
+        <li class="lore-list__item">
+          <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+          {% if entry.data.side %}<span class="lore-list__pack">{{ entry.data.side }}</span>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</section>

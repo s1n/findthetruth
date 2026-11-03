@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: People
+---
+<section class="lore-index lore-directory">
+  <p class="crumb"><a href="/lore/">// Lore Archive</a> / People</p>
+  <h1>People</h1>
+
+  {% set people = collections.lore | selectCategory("person") %}
+  {% set groups = people | groupByFaction %}
+
+  <div class="dir-grid">
+    {% for group in groups %}
+      <section class="panel">
+        <header class="panel__head">
+          <h2 class="panel__title">{{ group.name }}</h2>
+          <span class="panel__chatter" aria-hidden="true">SEC.{{ group.name | sysid }}</span>
+        </header>
+        <ul class="lore-list">
+          {% for entry in group.items %}
+            <li class="lore-list__item">
+              <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+              {% if entry.data.side %}<span class="lore-list__pack">{{ entry.data.side }}</span>{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </div>
+</section>

@@ -5,83 +5,46 @@ title: Lore Archive
 <section class="lore-index">
   <h1>Lore Archive</h1>
 
-  <div class="panel-grid">
-    <section class="panel">
-      <header class="panel__head">
-        <h2 class="panel__title">Factions</h2>
-        <span class="panel__chatter" aria-hidden="true">SEC.{{ "Factions" | sysid }}</span>
-      </header>
-      <ul class="lore-list">
-        {% for entry in collections.lore %}
-          {% if entry.data.category == "faction" %}
-            <li class="lore-list__item">
-              <a href="{{ entry.url }}">{{ entry.data.title }}</a>
-              {% if entry.data.side %}<span class="lore-list__pack">{{ entry.data.side }}</span>{% endif %}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </section>
+  {% set people   = collections.lore | selectCategory("person") %}
+  {% set stories  = collections.lore | selectCategory("story") %}
+  {% set factions = collections.lore | selectCategory("faction") %}
 
-    <section class="panel">
-      <header class="panel__head">
-        <h2 class="panel__title">People</h2>
-        <span class="panel__chatter" aria-hidden="true">SEC.{{ "People" | sysid }}</span>
-      </header>
-      <ul class="lore-list">
-        {% for entry in collections.lore %}
-          {% if entry.data.category == "person" %}
-            <li class="lore-list__item">
-              <a href="{{ entry.url }}">{{ entry.data.title }}</a>
-              {% if entry.data.faction %}<span class="lore-list__pack">{{ entry.data.faction }}</span>{% endif %}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </section>
+  <nav class="hub-grid" aria-label="Browse the archive">
+    <a class="hub-tile" href="/lore/people/">
+      <span class="hub-tile__chatter" aria-hidden="true">SEC.{{ "People" | sysid }}</span>
+      <span class="hub-tile__title">People</span>
+      <span class="hub-tile__count">{{ people | length }}</span>
+      <span class="hub-tile__hint">runners, execs &amp; clones</span>
+    </a>
+    <a class="hub-tile" href="/lore/stories/">
+      <span class="hub-tile__chatter" aria-hidden="true">SEC.{{ "Stories" | sysid }}</span>
+      <span class="hub-tile__title">Stories</span>
+      <span class="hub-tile__count">{{ stories | length }}</span>
+      <span class="hub-tile__hint">fiction &amp; documents</span>
+    </a>
+    <a class="hub-tile" href="/lore/factions/">
+      <span class="hub-tile__chatter" aria-hidden="true">SEC.{{ "Factions" | sysid }}</span>
+      <span class="hub-tile__title">Factions</span>
+      <span class="hub-tile__count">{{ factions | length }}</span>
+      <span class="hub-tile__hint">corps &amp; runner creeds</span>
+    </a>
+    <a class="hub-tile" href="/lore/sources/">
+      <span class="hub-tile__chatter" aria-hidden="true">SEC.{{ "Browse by source" | sysid }}</span>
+      <span class="hub-tile__title">Sources</span>
+      <span class="hub-tile__count">{{ collections.sources | length }}</span>
+      <span class="hub-tile__hint">packs &amp; boxes</span>
+    </a>
+  </nav>
 
-    <section class="panel">
-      <header class="panel__head">
-        <h2 class="panel__title">Stories</h2>
-        <span class="panel__chatter" aria-hidden="true">SEC.{{ "Stories" | sysid }}</span>
-      </header>
-      <ul class="lore-list">
-        {% for entry in collections.lore %}
-          {% if entry.data.category == "story" %}
-            <li class="lore-list__item">
-              <a href="{{ entry.url }}">{{ entry.data.title }}</a>
-              {% if entry.data.pack %}<span class="lore-list__pack">{{ entry.data.pack | adnid }}</span>{% endif %}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </section>
-
-    <section class="panel panel--wide">
-      <header class="panel__head">
-        <h2 class="panel__title">Browse by topic</h2>
-        <span class="panel__chatter" aria-hidden="true">SEC.{{ "Browse by topic" | sysid }}</span>
-      </header>
-      <p class="tag-cloud">
-        {% for topic in collections.topics %}
-          <a class="tag" href="/lore/topic/{{ topic.slug }}/">{{ topic.name }} <span class="tag__count">{{ topic.pages | length }}</span></a>
-        {% endfor %}
-      </p>
-    </section>
-
-    <section class="panel">
-      <header class="panel__head">
-        <h2 class="panel__title">Browse by source</h2>
-        <span class="panel__chatter" aria-hidden="true">SEC.{{ "Browse by source" | sysid }}</span>
-      </header>
-      <ul class="lore-list">
-        {% for source in collections.sources %}
-          <li class="lore-list__item">
-            <a href="/lore/source/{{ source.slug }}/">{{ source.name }}</a>
-            <span class="lore-list__pack">{{ source.pages | length }}</span>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  </div>
+  <section class="panel panel--wide">
+    <header class="panel__head">
+      <h2 class="panel__title">Browse by topic</h2>
+      <span class="panel__chatter" aria-hidden="true">SEC.{{ "Browse by topic" | sysid }}</span>
+    </header>
+    <p class="tag-cloud">
+      {% for topic in collections.topics %}
+        <a class="tag" href="/lore/topic/{{ topic.slug }}/">{{ topic.name }} <span class="tag__count">{{ topic.pages | length }}</span></a>
+      {% endfor %}
+    </p>
+  </section>
 </section>

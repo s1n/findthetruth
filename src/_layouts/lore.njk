@@ -13,11 +13,33 @@ layout: base.njk
 
   <div class="lore-entry__layout">
     <div class="lore-entry__body">
+      {% if roster and roster.length %}
+        <div class="chat-tabs" role="list" aria-label="C.H.A.T. participants">
+          <span class="chat-tabs__label" aria-hidden="true">//&gt; C.H.A.T.</span>
+          {% for u in roster %}
+            <span class="chat-tab" role="listitem" style="--user: {{ u.color }};">
+              <span class="chat-tab__tile">
+                <img src="{{ u.img }}" alt="Chat avatar for {{ u.name }}" loading="lazy">
+              </span>
+              <span class="chat-tab__name">{{ u.name }}</span>
+            </span>
+          {% endfor %}
+        </div>
+      {% endif %}
       {{ content | safe }}
       <p class="lore-entry__back"><a href="/lore/">&larr; Back to all lore</a></p>
     </div>
 
     <aside class="lore-entry__rail">
+      {% if portrait %}
+        <section class="panel panel--rail panel--portrait">
+          <span class="panel__chatter" aria-hidden="true">IMG {{ title | sysid }}</span>
+          <figure class="portrait">
+            <img src="{{ portrait }}" alt="Dossier portrait of {{ portrait_alt or title }}" loading="lazy">
+            {% if portrait_caption %}<figcaption>{{ portrait_caption }}</figcaption>{% endif %}
+          </figure>
+        </section>
+      {% endif %}
       {% if source %}
         <section class="panel panel--rail">
           <h2 class="panel__title">Source</h2>

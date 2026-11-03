@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Sources
+---
+<section class="lore-index lore-directory">
+  <p class="crumb"><a href="/lore/">// Lore Archive</a> / Sources</p>
+  <h1>Sources</h1>
+
+  <section class="panel panel--wide">
+    <header class="panel__head">
+      <h2 class="panel__title">Packs &amp; boxes</h2>
+      <span class="panel__chatter" aria-hidden="true">SEC.{{ "Browse by source" | sysid }}</span>
+    </header>
+    <ul class="lore-list lore-list--cols">
+      {% for source in collections.sources %}
+        <li class="lore-list__item">
+          <a href="/lore/source/{{ source.slug }}/">{{ source.name }}</a>
+          <span class="lore-list__pack">{{ source.pages | length }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</section>

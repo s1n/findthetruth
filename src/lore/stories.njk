@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: Stories
+---
+<section class="lore-index lore-directory">
+  <p class="crumb"><a href="/lore/">// Lore Archive</a> / Stories</p>
+  <h1>Stories</h1>
+
+  {% set stories = collections.lore | selectCategory("story") %}
+
+  <section class="panel panel--wide">
+    <header class="panel__head">
+      <h2 class="panel__title">All stories &amp; documents</h2>
+      <span class="panel__chatter" aria-hidden="true">SEC.{{ "Stories" | sysid }}</span>
+    </header>
+    <ul class="lore-list lore-list--cols">
+      {% for entry in stories %}
+        <li class="lore-list__item">
+          <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+          {% if entry.data.pack %}<span class="lore-list__pack">{{ entry.data.pack | adnid }}</span>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</section>

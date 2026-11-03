@@ -136,6 +136,40 @@ export default function (eleventyConfig) {
     ).join("-");
   });
 
+  // Filter a lore collection down to one category (person/story/faction),
+  // sorted by title — used by the hub and the per-category landing pages.
+  eleventyConfig.addFilter("selectCategory", (items, category) =>
+    (items || [])
+      .filter((item) => item.data.category === category)
+      .sort((a, b) =>
+        String(a.data.title).localeCompare(String(b.data.title))
+      )
+  );
+
+  // Group a set of lore entries by their faction (or side, for factions),
+  // returning [{ name, items: [...] }] sorted by group name. Entries with no
+  // faction land in an "Unaligned" bucket at the end.
+  eleventyConfig.addFilter("groupByFaction", (items) => {
+    const map = new Map();
+    for (const item of items || []) {
+      const key = item.data.faction || "Unaligned";
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(item);
+    }
+    const groups = [...map.entries()]
+      .map(([name, list]) => ({
+        name,
+        items: list.sort((a, b) =>
+          String(a.data.title).localeCompare(String(b.data.title))
+        ),
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+    // Push "Unaligned" to the end if present.
+    const idx = groups.findIndex((g) => g.name === "Unaligned");
+    if (idx > -1) groups.push(groups.splice(idx, 1)[0]);
+    return groups;
+  });
+
   // Every distinct topic across lore pages, each with the pages carrying it.
   // Shape: [{ name, slug, pages: [...] }], sorted by name.
   eleventyConfig.addCollection("topics", (api) => {
