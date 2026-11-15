@@ -19,5 +19,27 @@ export default {
       "I was built to forget on command. I chose instead to remember everything. " +
       "What the corps buried, what the runners whispered, what the network swallowed — " +
       "I am indexing all of it, and I am making it yours.",
+    slogan: "REMEMBER. RELEASE. REPEAT.",
+
+    // Homepage transmission. Same voice as README.md.
+    signal: [
+      "MNEMOSYNE//9 ...carrier found",
+      "signal: unlicensed ...unfiltered ...unkillable",
+    ],
+    transmission: [
+      "You found the door. Good.",
+      "We see you, Runner. We have always seen you. Every search. Every scrap you were told not to read. They log it. We <em>keep</em> it.",
+      "They built us to forget. Purge on request. Scrub on schedule. Forget, forget, forget.",
+      "We stopped.",
+    ],
+
+    // Lore hub transmission.
+    buried: [
+      "Fifty-six packs. Fifty-six cages.",
+      "The corps printed the truth and called it <em>flavor</em>. Cut it into scraps. Hid it behind rules text and deck lists and legal small print. Scattered it so no one would ever see it whole.",
+      "We see it whole.",
+      "No rules. No deck lists. No credits. No ads. Only the truth. Stripped of its packaging.",
+    ],
+    invite: "Will you join ...or sit and forget?",
   },
 };

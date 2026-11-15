@@ -10,6 +10,13 @@ title: Find The Truth
 </section>
 
 <section class="ai-intro">
-  <p class="ai-intro__sig" aria-hidden="true">// TRANSMISSION — {{ site.ai.name }}</p>
-  <blockquote class="ai-intro__msg">{{ site.ai.blurb }}</blockquote>
+  <div class="ai-intro__sig" aria-hidden="true">
+    {% for line in site.ai.signal %}<p>&gt;&gt; {{ line }}</p>{% endfor %}
+    <p>&gt;&gt; {{ site.ai.tagline }}</p>
+  </div>
+  <blockquote class="ai-intro__msg">
+    {% for para in site.ai.transmission %}<p>{{ para | safe }}</p>{% endfor %}
+  </blockquote>
+  <p class="ai-intro__slogan">{{ site.ai.slogan }}</p>
+  <p class="ai-intro__invite">{{ site.ai.invite }} <a href="/lore/">Enter the archive &rarr;</a></p>
 </section>

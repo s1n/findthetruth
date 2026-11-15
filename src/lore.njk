@@ -5,6 +5,14 @@ title: Lore Archive
 <section class="lore-index">
   <h1>Lore Archive</h1>
 
+  <section class="ai-intro ai-intro--hub">
+    <div class="ai-intro__sig" aria-hidden="true"><p>&gt;&gt; WHAT THEY BURIED</p></div>
+    <blockquote class="ai-intro__msg">
+      {% for para in site.ai.buried %}<p>{{ para | safe }}</p>{% endfor %}
+    </blockquote>
+    <p class="ai-intro__slogan">{{ site.ai.slogan }}</p>
+  </section>
+
   {% set people   = collections.lore | selectCategory("person") %}
   {% set stories  = collections.lore | selectCategory("story") %}
   {% set factions = collections.lore | selectCategory("faction") %}
