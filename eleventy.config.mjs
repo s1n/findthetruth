@@ -1,4 +1,9 @@
+import { HtmlBasePlugin } from "@11ty/eleventy";
+
 export default function (eleventyConfig) {
+  // Prefix root-relative links ("/lore/...") with pathPrefix at build time.
+  eleventyConfig.addPlugin(HtmlBasePlugin);
+
   // Copy static assets straight through to the output.
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
 
@@ -200,6 +205,9 @@ export default function (eleventyConfig) {
   });
 
   return {
+    // GitHub Pages serves this project under /findthetruth/. The deploy
+    // workflow sets PATH_PREFIX; local builds and the dev server stay at /.
+    pathPrefix: process.env.PATH_PREFIX || "/",
     dir: {
       input: "src",
       output: "_site",
